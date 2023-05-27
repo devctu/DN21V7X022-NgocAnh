@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Bài tập 2</title>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+		/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+		<style type="text/css">
+			/* This puts titles always on a separate line from thumbnails */
+			ul img {
+				display: block;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<h2>Các đoạn phim hay nhất</h2>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-3 card">
+					<ul>
+						<li>
+							<a
+								href="https://www.youtube.com/watch?v=ew8-FJSBWdE"
+								>Siêu Bão Mạnh Nhất Toàn Cầu Mawar Lao Thẳng Philippines, Có Thể Ảnh Hưởng Đến Việt Nam | SKĐS</a
+							>
+						</li>
+						<li>
+							<a
+								href="https://www.youtube.com/watch?v=DAOYRrDcpmE"
+								>Toàn cảnh Thời sự quốc tế trưa 27/5: Ý đồ thực sự việc Nga gửi khí tài hạt nhân đến Belarus?</a
+							>
+						</li>
+						<li>
+							<a
+								href="https://www.youtube.com/watch?v=Z0unLkNGifo"
+								>Hành trình phá án hay nhất 27/5/2023 | Hành trình phá án | ANTV</a
+							>
+						</li>
+						<li>
+							<a
+								href="https://www.youtube.com/watch?v=CGD3gtSRzw8"
+								>Hình ảnh siêu bão Mawar từ vệ tinh, gió mạnh cấp 17</a
+							>
+						</li>
+					</ul>
+				</div>
+				<div class="col-sm-9 card" id="video-watcher"></div>
+			</div>
+		</div>
+		
+		<script src="youtube.js"></script>
+		<script>
+			const thumbnailify = function(videoLink) {
+				const linkUrl = videoLink.prop("href");
+				const thumbnailUrl = youtube.generateThumbnailUrl(linkUrl);
+
+				const thumbnailImg = $("<img>");
+				thumbnailImg.prop("src", thumbnailUrl);
+				videoLink.append(thumbnailImg);
+				
+				videoLink.on("click", function(e){
+					e.preventDefault();
+
+					const videoEmbed = $("<iframe></iframe>");
+					videoEmbed.prop("src", youtube.generateEmbedUrl(linkUrl));
+					videoEmbed.prop("width", 560);
+					videoEmbed.prop("height", 315);
+					
+					const videoWatcher = $("#video-watcher");
+					videoWatcher.html(videoEmbed);
+					videoWatcher.fadeIn();
+				});
+			}
+				//Duyệt qua các phần tử
+
+				$("a").each(function(){
+					thumbnailify($(this));
+				});
+			
+		</script>
+	
+	</body>
+</html>
