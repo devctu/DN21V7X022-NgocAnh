@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Model Form</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+      integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Mở biểu mẫu đăng nhập</h2>
+
+      <!-- Button trigger modal -->
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#exampleModalCenter"
+      >
+        Mở hộp thoại
+      </button>
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="exampleModalCenter"
+        tabindex="-1"
+        role="dialog"      
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">
+                Đăng nhập
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action="">
+                <div class="form-group">
+                  <label for="usernameInput">
+                    <i class="fas fa-user"></i> Người dùng:
+                  </label>
+                  <input
+                    class="form-control"
+                    placeholder="Nhập tên người dùng"
+                    id="usernameInput"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="passwordInput">
+                    <i class="fas fa-eye"></i> Mật khẩu:
+                  </label>
+                  <input
+                    class="form-control"
+                    placeholder="Nhập mật khẩu"
+                    id="passwordInput"
+                  />
+                </div>
+
+                <div class="form-group form-check">
+                  <input type="checkbox" class="form-check-input" />
+                  <label class="form-check-label">Ghi nhớ tôi</label>
+                </div>
+                <button class="btn btn-success btn-block" type="button">
+                  <i class="fas fa-power-off"></i> Đăng nhập
+                </button>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <a href="#" class="btn btn-danger mr-auto" data-dismiss="modal">
+                <i class="fas fa-times"></i> Huỷ bỏ
+              </a>
+              <p class="text-right">
+                Bạn chưa phải là thành viên?
+                <a href="#">Đăng ký</a>
+                <br/>
+                Quên <a href="#"> mật khẩu</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
