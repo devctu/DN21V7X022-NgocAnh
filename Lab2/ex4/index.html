@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Pokemon Index</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="w-25 mx-auto my-5">Pokemon Index</h2>
+      <div class="d-flex justify-content-center align-items-center">
+        <input
+          id="pokemon-name-input"
+          type="text"
+          placeholder="Nhập tên Pokemon"
+          class="w-25 my-5 form-control form-control-md"
+          spellcheck="false"
+        />
+        <button id="search-btn" class="btn btn-primary mx-2">Tìm</button>
+      </div>
+      <div class="d-flex flex-column justify-content-center align-items-center">
+        <p id="message" class="text-danger text-weight-bold b4-t d-none"></p>
+        <div
+          id="card"
+          class="d-flex flex-column justify-content-center align-items-center w-25 shadow-lg bg-light invisible"
+        >
+          <h3 class="text-uppercase text-success pt-2"></h3>
+          <div class="d-flex justify-content-between">
+            <img class="w-50" src="" alt="Front" />
+            <img class="w-50" src="" alt="Back" />
+          </div>
+          <h4 class="text-warning">Types</h4>
+          <div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      const btnSearch = $("#search-btn");
+      const inputPokemonName = $("#pokemon-name-input");
+      $(document).ready(function () {
+        const setPokemonCard = (pokemon) => {
+          const hName = $("#card>h3").first();
+          const divImages = $("#card>div").first();
+          const imgFont = divImages.children("img").eq(0);
+          const imgBack = divImages.children("img").eq(1);
+          const divTypes = $("#card>div").last();
+
+          hName.text("");
+          imgFont.prop("src", "");
+          imgBack.prop("src", "");
+          divTypes.html("");
+
+          if (pokemon) {
+            hName.text(pokemon.name);
+            imgFont.prop("src", pokemon.sprites.front_shiny);
+            imgBack.prop("src", pokemon.sprites.back_shiny);
+            pokemon.types.forEach((type) => {
+              const hType = $("<h6></h6>");
+              hType.text(type.type.name);
+              divTypes.append(hType);
+            });
+          }
+        };
+
+        const searchPokemonByName = (name) => {
+          const pMessage = $("#message");
+          pMessage.text("Dang tim pokemon ...");
+          pMessage.removeClass("d-none");
+
+          const divPokemonCard = $("#card");
+          divPokemonCard.addClass("invisible");
+
+          setPokemonCard(null);
+
+          if (!name) {
+            pMessage.text("Can nhap ten Pokemon.");
+            return;
+          }
+          $.getJSON(`https://pokeapi.co/api/v2/pokemon/${name}`, (result) => {
+            console.log(result);
+            pMessage.addClass("d-none");
+
+            setPokemonCard(result);
+            divPokemonCard.removeClass("invisible");
+          }).fail(() => {
+            pMessage.text("Khong tim thay pokemon.");
+            pMessage.removeClass("d-none");
+          });
+        };
+        btnSearch.click(() => {
+          const pokemonName = inputPokemonName.val().toLowerCase();
+          searchPokemonByName(pokemonName);
+        });
+        inputPokemonName.keydown((event) => {
+          if (event.which == 13) {
+            btnSearch.trigger("click");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
